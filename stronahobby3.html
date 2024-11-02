@@ -1,92 +1,281 @@
 <!DOCTYPE html>
 <html lang="pl">
-
-<html>
-
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Moje Hobby - Joga</title>
+        <style>
+            /* ... (Twoje pozostałe style) ... */
+    
+            /* Styl dla nagłówka */
+            header {
+                background-color: #4CAF50;
+                color: white;
+                text-align: center;
+                padding: 1em;
+                width: 100%;
+                position: relative; /* Dodano dla animacji słońca */
+                overflow: hidden;   /* Dodano dla animacji słońca */
+            }
+    
+            /* Animacja słońca */
+    .sun-animation {
+        position: absolute;
+        bottom: -40px; /* Słońce zaczyna poniżej headera */
+        left: 10px;
+        width: 80px;
+        height: 80px;
+        background-color: yellow;
+        border-radius: 50%;
+        animation: sunRiseSet 10s infinite;
+    }
+    
+    /* Definicja kluczowych klatek animacji */
+    @keyframes sunRiseSet {
+        0% {
+            transform: translateY(0%); /* Słońce jest ukryte poniżej headera */
+        }
+        20% {
+            transform: translateY(100%); /* Słońce w pełni widoczne */
+        }
+        50% {
+            transform: translateY(100%); /* Słońce pozostaje widoczne przez 3 sekundy */
+        }
+        100% {
+            transform: translateY(0%); /* Słońce zachodzi i znika */
+        }
+    }
+    
+            /* Animacja słońca */
+            .sun-animation {
+                position: absolute;
+                bottom: -40px; /* Słońce zaczyna poniżej headera */
+                left: 10px;
+                width: 80px;
+                height: 80px;
+                background-color: yellow;
+                border-radius: 50%;
+                animation: sunRiseSet 10s infinite;
+            }
+    
+            /* Definicja kluczowych klatek animacji */
+            @keyframes sunRiseSet {
+                0% {
+                    transform: translateY(0%); /* Słońce jest ukryte poniżej headera */
+                }
+                25% {
+                    transform: translateY(100%); /* Słońce wschodzi i jest w pełni widoczne */
+                }
+                50% {
+                    transform: translateY(100%); /* Słońce jest w pełni widoczne */
+                }
+                75% {
+                    transform: translateY(0%); /* Słońce zachodzi i znika za horyzontem */
+                }
+                100% {
+                    transform: translateY(0%); /* Słońce jest ukryte poniżej headera */
+                }
+            }
+    
+            /* Ukrywamy komunikat i tło na początku */
+            #popup {
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 300px;
+                background-color: white;
+                border: 2px solid #4CAF50;
+                border-radius: 10px;
+                padding: 20px;
+                text-align: center;
+                z-index: 1000;
+            }
+    
+            #overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+            }
+    
+            #close-btn {
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+    
+            body {
+                font-family: Arial, sans-serif;
+                background-image: url("https://cdn.pixabay.com/photo/2018/11/30/21/07/sunrise-3848628_1280.jpg");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                color: #333;
+                margin: 0;
+                padding: 0;
+            }
+    
+            .obrazek_joga {
+                background-image: url('https://images.pexels.com/photos/268134/pexels-photo-268134.jpeg');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                height: 300px;
+                border-radius: 10px;
+                margin: 20px 0;
+            }
+    
+            header {
+                background-color: #4CAF50;
+                color: white;
+                text-align: center;
+                padding: 1em;
+                width: 100%;
+                position: relative; /* Dodano pozycjonowanie względne */
+                overflow: hidden; /* Ukrywamy elementy wychodzące poza header */
+            }
+    
+            /* Styl kart menu */
+            nav {
+                display: flex;
+                justify-content: center;
+                margin: 2em 0;
+                gap: 20px;
+                flex-wrap: wrap; /* Dla lepszej responsywności */
+            }
+    
+            .card {
+                background-color: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+                text-align: center;
+                transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+                max-width: 400px;
+                cursor: pointer;
+                opacity: 0.8;
+                width: 100%;
+            }
+    
+            .card:hover {
+                transform: scale(1.05);
+                box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+                opacity: 1;
+            }
+    
+            /* Styl kart nawigacyjnych - linki */
+            .card a {
+                text-decoration: none;
+                color: white;
+                font-weight: bold;
+                display: block;
+                margin-top: 10px;
+                padding: 10px 20px;
+                background-color: #4CAF50;
+                border-radius: 5px;
+                max-width: 100%;
+                text-align: center;
+            }
+    
+            section {
+                margin: 2em auto;
+                max-width: 800px;
+                padding: 1em;
+                background-color: white;
+                border-radius: 10px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            }
+    
+            footer {
+                text-align: center;
+                padding: 1em;
+                background-color: #4CAF50;
+                color: white;
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+            }
+    
+            /* Media queries małe ekrany */
+            @media (max-width: 600px) {
+                #popup {
+                    width: 90%;
+                }
+    
+                #close-btn {
+                    background-color: rgb(0, 123, 255);
+                }
+    
+                header {
+                    background-color: rgb(0, 123, 255);
+                }
+    
+                .card a {
+                    background-color: rgb(0, 123, 255);
+                }
+    
+                footer {
+                    background-color: rgb(0, 123, 255);
+                }
+    
+                nav {
+                    flex-direction: column;
+                    align-items: center;
+                }
+    
+                .card {
+                    max-width: 90%;
+                    margin: 10px 0;
+                }
+    
+                header h1 {
+                    font-size: 1.5em;
+                }
+    
+                section h2 {
+                    font-size: 1.2em;
+                }
+    
+                body {
+                    font-size: 14px;
+                }
+    
+                .sun-animation {
+                    display: none; /* Ukrywamy animację na bardzo małych ekranach */
+                }
+            }
+        </style>
+    </head>
+    
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moje Hobby - Joga</title>
+    <title>Moje ulubione ćwiczenia</title>
     <style>
-        /* Ogólne style */
         body {
             font-family: Arial, sans-serif;
-            background-image: url("https://cdn.pixabay.com/photo/2018/11/30/21/07/sunrise-3848628_1280.jpg");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Styl dla nagłówka */
-        header {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
             padding: 1em;
-            width: 100%;
-            position: relative;
-            /* Dla animacji słońca */
-            overflow: hidden;
-            /* Dla animacji słońca */
         }
 
-        /* Animacja słońca */
-        .sun-animation {
-            position: absolute;
-            bottom: -40px;
-            /* Słońce zaczyna poniżej nagłówka */
-            left: 10px;
-            width: 80px;
-            height: 80px;
-            background-color: yellow;
-            border-radius: 50%;
-            animation: sunRiseSet 10s infinite;
-        }
-
-        /* Definicja kluczowych klatek animacji */
-        @keyframes sunRiseSet {
-            0% {
-                transform: translateY(0%);
-                /* Słońce ukryte poniżej nagłówka */
-            }
-
-            20% {
-                transform: translateY(100%);
-                /* Słońce w pełni widoczne */
-            }
-
-            50% {
-                transform: translateY(100%);
-                /* Słońce pozostaje widoczne przez 3 sekundy */
-            }
-
-            100% {
-                transform: translateY(0%);
-                /* Słońce zachodzi i znika */
-            }
-        }
-
-        /* Styl dla stopki */
+        header,
         footer {
-            text-align: center;
-            padding: 1em;
             background-color: #4CAF50;
             color: white;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            text-align: center;
+            padding: 1em;
         }
 
-        /* Dodatkowe style (jeśli potrzebne) */
         section {
-            margin: 2em auto;
             max-width: 800px;
-            padding: 1em;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
+            margin: 2em auto;
         }
 
         a {
@@ -94,46 +283,24 @@
             text-decoration: none;
         }
 
-        /* Responsywność dla małych ekranów */
-        @media (max-width: 600px) {
-            header {
-                background-color: rgb(0, 123, 255);
-            }
-
-            footer {
-                background-color: rgb(0, 123, 255);
-            }
-
-            .sun-animation {
-                display: none;
-                /* Ukrywamy animację na bardzo małych ekranach */
-            }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
         }
     </style>
-</head>
-<!-- Opcjonalnie: Treść przed stopką -->
-<footer>
-    <p>&copy; 2024 Moje Hobby - Joga</p>
-</footer>
-</body>
-
-<link rel="stylesheet" href="styles.css">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tytuł podstrony</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <header>
-        <h1>Dlaczego joga?</h1>
+        <h1>Moje ulubione ćwiczenia jogi</h1>
     </header>
 
     <section>
-        <p>Joga pozwala mi na zachowanie równowagi między ciałem a umysłem. Dzięki regularnym praktykom czuję się
-            zdrowsza i bardziej zrelaksowana.</p>
+        <ul>
+            <li>Vrksasana (Pozycja drzewa)</li>
+            <li>Padmasana (Pozycja lotosu)</li>
+            <li>Trikonasana (Pozycja trójkąta)</li>
+        </ul>
         <p><a href="sloneczko.html">Powrót do strony głównej</a></p>
     </section>
 
